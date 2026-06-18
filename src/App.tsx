@@ -1,0 +1,7 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (C) 2026 Shogo Technologies, Inc.
+import { CarbonclipApp } from './components/CarbonclipApp'
+
+export default function App() {
+  return <CarbonclipApp />
+}
