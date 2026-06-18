@@ -1,8 +1,15 @@
 import { Hono } from 'hono'
-import { prisma } from './src/lib/db'
 import { readFileSync } from 'fs'
 
 const app = new Hono()
+
+let prisma: any = null
+try {
+  const mod = require('./src/generated/prisma/client') as typeof import('./src/generated/prisma/client')
+  prisma = new mod.PrismaClient()
+} catch {
+  console.warn('[Carbonclip] Prisma client not generated yet. Run: npx prisma generate')
+}
 
 // ─── Download Project ─────────────────────────────────────────────
 app.get('/download', (c) => {
